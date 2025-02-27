@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D myBod;
     MouseController mouseCon;
+    Animator myAnim;
 
     public bool facingRight;
 

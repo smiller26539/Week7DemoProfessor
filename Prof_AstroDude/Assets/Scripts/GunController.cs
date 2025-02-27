@@ -12,11 +12,15 @@ public class GunController : MonoBehaviour
 
 
     // Start is called before the first frame update
+
+    public float mzFlashTime;
+    private float mzFlashTimer;
     void Start()
     {
         mouseCon = GameObject.Find("Main Camera").GetComponent<MouseController>();
         playerCon = transform.GetComponentInParent<PlayerController>();
         spawnPointTran = transform.Find("SpawnPoint").GetComponent<Transform>();
+        mzFlashTime = spawnPointTran.GetComponentInParent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -34,7 +38,10 @@ public class GunController : MonoBehaviour
             GameObject g = Instantiate(bulletPrefab, spawnPointTran.position, Quaternion.identity);
             g.GetComponent<Rigidbody2D>().velocity = shotDir * 5;
             g.transform.right = shotDir;
+            mzFlashTimer = mzFlashTime;
         }
+
+        mzFlashTimer -= Time.deltaTime;
 
         
     }
