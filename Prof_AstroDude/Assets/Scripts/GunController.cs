@@ -9,7 +9,10 @@ public class GunController : MonoBehaviour
     MouseController mouseCon;
     PlayerController playerCon;
     Transform spawnPointTran;
+    SpriteRenderer muzzleFlash;
 
+    public float mzFlashTime;
+    private float mzFlashTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +20,7 @@ public class GunController : MonoBehaviour
         mouseCon = GameObject.Find("Main Camera").GetComponent<MouseController>();
         playerCon = transform.GetComponentInParent<PlayerController>();
         spawnPointTran = transform.Find("SpawnPoint").GetComponent<Transform>();
+        muzzleFlash = spawnPointTran.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -32,8 +36,16 @@ public class GunController : MonoBehaviour
 
         if(Input.GetButtonDown("Fire1")) {
             GameObject g = Instantiate(bulletPrefab, spawnPointTran.position, Quaternion.identity);
-            g.GetComponent<Rigidbody2D>().velocity = shotDir * 5;
-            g.transform.right = shotDir;
+            //Example of 1 script using another
+            g.GetComponent<BulletController>().shoot(shotDir);
+            muzzleFlash.enabled = true;
+            mzFlashTimer = mzFlashTime;
+        }
+        
+        //turn off muzzle flash after timer
+        mzFlashTimer -= Time.deltaTime;
+        if(mzFlashTimer <= 0) {
+            muzzleFlash.enabled = false;
         }
 
         

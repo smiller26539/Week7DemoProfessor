@@ -615,6 +615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 9047204463473000998, guid: 1940587d5aa474b19b3d0e16524ede13, type: 3}
+  mzFlashTime: 0.1
 --- !u!1 &1217829456
 GameObject:
   m_ObjectHideFlags: 0
@@ -14465,6 +14466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1751684814}
   - component: {fileID: 1751684815}
+  - component: {fileID: 1751684816}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -14539,6 +14541,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1751684816
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751684813}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb7144d7f651f4df3894932a170965d7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1932415093
 GameObject:
   m_ObjectHideFlags: 0
