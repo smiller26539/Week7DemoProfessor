@@ -13,10 +13,10 @@ public class BulletController : MonoBehaviour
         
     }
 
-    public void shoot(Vector3 shotDir)
+    // Update is called once per frame
+    void Update()
     {
-        GetComponent<Rigidbody>().velocity = shotDir.normalized * speed;
-        transform.right = shotDir;
+        
     }
 
     void OnCollisionEnter2D(Collision2D col) {

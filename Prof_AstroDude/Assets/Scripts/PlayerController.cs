@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         myBod = GetComponent<Rigidbody2D>();
+        myAnim = GetComponentInChildren<Animator>();
         mouseCon = GameObject.Find("Main Camera").GetComponent<MouseController>();
     }
 
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         myBod.velocity = 5 * (new Vector2(h, v));
+
+        myAnim.SetBool("RUNNING", myBod.velocity.magnitude > 0);
 
         Vector3 mousePos = mouseCon.getWorldMousePos();
         facingRight = transform.position.x < mousePos.x;
