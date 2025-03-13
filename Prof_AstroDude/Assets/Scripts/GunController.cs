@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GunController : MonoBehaviour
@@ -14,10 +15,10 @@ public class GunController : MonoBehaviour
     public float mzFlashTime;
     private float mzFlashTimer;
 
-    // Start is called before the first frame update
+    public float shootTime;
+    private float shootTimer;
 
-    public float mzFlashTime;
-    private float mzFlashTimer;
+    // Start is called before the first frame update
     void Start()
     {
         mouseCon = GameObject.Find("Main Camera").GetComponent<MouseController>();
@@ -36,10 +37,18 @@ public class GunController : MonoBehaviour
             transform.right = -shotDir;
         }
 
-        if(Input.GetButtonDown("Fire1")) {
+        //if(Input.GetButtonDown("Fire1")) Desktop Version
+        if (shootTimer <= 0 && Input.touches.Length < 0)
+        {   Touch t = Input.touches[0];
+        if(t.phase == TouchPhase.Ended) //Mobile Version
+            {
             GameObject g = Instantiate(bulletPrefab, spawnPointTran.position, Quaternion.identity);
+            g.transform.localScale = 2 * Vector3.one;
             g.GetComponent<Rigidbody2D>().velocity = shotDir * 5;
-            g.transform.right = shotDir;
+            muzzleFlash.enabled = true;
+            mzFlashTimer = mzFlashTime;
+            shootTimer = shootTime;
+            }
         }
 
         mzFlashTimer -= Time.deltaTime;
